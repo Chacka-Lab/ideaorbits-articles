@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="IdeaOrbits Design Guide — design philosophy and functional design for IdeaOrbits, a platform dedicated to the birth and evolution of ideas.">
   <title>IdeaOrbits Design Guide</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/5.5.1/github-markdown-light.min.css">
@@ -19,253 +20,160 @@
   </style>
 </head>
 <body>
-  <article id="md-content" class="markdown-body"></article>
+  <article id="md-content" class="markdown-body">
+<h1>IdeaOrbits Design Guide</h1>
+<p>Managing Editor: Yan　Last Updated: 2026-07-21T6:00:00Z</p>
+<hr>
+<p>Let ideas be expressed without frustration.</p>
+<p>This document is the design guide for <code>IdeaOrbits</code>, primarily used to articulate design philosophy and functional design. The beginning of each chapter presents a brief introduction or design philosophy for reference. This guide is currently a draft; the website is not yet live, and writing and implementation are ongoing (Chacka Lab is currently just me). Implementation progress: building the basic user module [In Progress]</p>
+<p>Repository: <a href="https://github.com/Chacka-Lab/ideaorbits">https://github.com/Chacka-Lab/ideaorbits</a></p>
+<p>Collaborators are currently needed to help define website design details and write code (open-source non-profit project, no pay — sorry!).</p>
+<p>Or maybe you have some feedback or objections? Absolutely fine — your contributions are very much appreciated!</p>
+<p>You can reach me directly; I&#39;d love to chat: <a href="mailto:yananghelp@outlook.com">yananghelp@outlook.com</a> (Yan)</p>
+<h2>Notes</h2>
+<p><code>ITPCS System</code>: Abbreviation for the ITPCS Content Hierarchy System (Idea-Topic-Post-Content-Section System).</p>
+<h2>Community Atmosphere and Design Philosophy</h2>
+<p>This chapter needs no introduction.</p>
+<h3>What kind of contribution do you want to make?</h3>
+<p>Most high-quality communities currently combat <a href="https://en.wikipedia.org/wiki/Eternal_September">Eternal September</a> by raising the barrier to entry and severely cracking down on low-quality content — but have they gone too far?</p>
+<p>Imagine this scenario: someone suddenly has a brilliant idea and shares it in a general community, but nobody responds, so they turn to a high-quality community. One community says: &quot;To join us, you need a GitHub account that&#39;s been registered for 3 years.&quot; Another says: &quot;You need to find a senior member in a general community to give you an invitation code before you can apply.&quot; Yet another says: &quot;You need to explain in detail why you want to join and what value you bring to us (and you&#39;ll probably be rejected anyway).&quot; Then a niche community says: &quot;You just need to read enough articles here and interact enough to start posting!&quot; &quot;Perfect — that&#39;s where I&#39;ll go,&quot; he says. He registers, spends hours completing the onboarding tutorial and interaction requirements, successfully posts his idea, and waits for responses. A few hours later, a reply comes in. Just as he&#39;s about to respond, the forum triggers a risk-control mechanism, requiring him to wait a full day before posting again... At this point, I imagine the person&#39;s spirit has somewhat collapsed. And many people probably give up long before reaching this stage. You might wonder why I describe this so vividly — because I&#39;m the protagonist of this story.</p>
+<p>(By the way, when I tried to publish this document on <a href="https://news.ycombinator.com/">Hacker News</a>, I encountered exactly what I described above — yet this document had actually been completed long before that...)</p>
+<p>You might think: &quot;Okay, some communities do have high barriers, but surely cracking down on low-quality content is fine?&quot; Literally speaking, that&#39;s true — I hate low-quality content too. But what I question is: where exactly is the line for &quot;low-quality content&quot;? Imagine this: someone in a community asks, &quot;Can we give AI genuine free will to make it smarter?&quot; Most people would probably consider this question worthless, unnecessary to discuss, and naive. But what if the question were: &quot;Can we do decentralized accounting?&quot; Is that also naive? Any fully developed idea originally began as a small thought like &quot;Can we do decentralized accounting?&quot; Before deep investigation, we have no right to pass judgment on its value. And why do we require the author to deeply investigate it alone first? A person&#39;s energy and experience are ultimately limited — since we already have the internet as a platform, why not let everyone collectively mine and exchange even our tiniest ideas? <strong>Let bad ideas be eliminated faster, let good ideas no longer be buried, let repeated ideas be quickly evaluated!</strong> If IdeaOrbits existed, perhaps this document would only need a single sentence... In summary, I believe many platforms have a misplaced judgment of &quot;low quality.&quot; Many platforms excessively chase outcomes, but in today&#39;s AI era, the barrier and cost to produce outcomes have dramatically dropped. If platforms still stubbornly pursue outcomes, the losses from ignoring good ideas may far outweigh the benefits.</p>
+<p>Of course, you might also think high barriers are necessary to prevent garbage content from entering. First: is your platform really worth the immense effort you&#39;re demanding of contributors to prove themselves? This is not an objective question — it&#39;s subjective. If a good idea never gets seen because the barrier was too high and the author gave up, that is a loss for the world. Second: can preventing garbage content rely more on content moderation rather than excessively raising barriers? I believe we should shift more focus to the content itself rather than the person behind it. This will significantly increase staffing needs, and my approach is: <strong>community governs community, elite governs governance</strong> (see the <code>Governance and the Future?</code> section).</p>
+<p>You might also challenge: &quot;What makes you think you can escape high barriers?&quot; After observing many communities, I&#39;ve found that most high-quality communities aim to: create a place for rational discussion -&gt; combat Eternal September -&gt; elite submissions (high barriers), front-end filtering. Our goal is: to promote the birth and evolution of ideas -&gt; we need a place for rational discussion -&gt; combat Eternal September -&gt; mass submissions, evolutionary filtering. Because we have an explicit a priori goal of &quot;promoting the birth and evolution of ideas,&quot; we can derive a governance model for &quot;ideas&quot; — and we are capable of implementing evolutionary filtering rather than front-end filtering. General discussion lacks the concept of evolution, so it&#39;s difficult to implement the same evolutionary filtering.</p>
+<h3>Questions, Posts, and Ideas?</h3>
+<p>Discussion can be broadly divided into three categories: questions, posts, and ideas. Questions: purely seeking answers. Posts: purely showcasing something. Ideas: content that needs refinement and is constructive. Clearly, ideas occupy a middle ground between questions and posts. And questions and posts can fairly easily become ideas! For example: &quot;How should XXX problem be solved?&quot; is a question, while &quot;Could we use XXX to solve XXX problem?&quot; is an idea. Posts go without saying — all posts start as an idea. Moreover, promoting the birth and evolution of ideas doesn&#39;t mean we don&#39;t accept questions and posts. For example: &quot;If XXX idea encounters XXX situation, what should be done?&quot; or &quot;XXX idea results published!&quot; — these questions and posts greatly help the birth and evolution of ideas. But content like &quot;I just went through a breakup, what do I do?&quot; or &quot;Here&#39;s something fun to look at&quot; contributes almost nothing.</p>
+<p>Someone might challenge: if questions and posts are allowed, the evolutionary filtering mentioned above can&#39;t work either. Great question! Our solution is to require most topics to be affiliated with a specific idea — this way, governance is confined within the idea, and the value of a topic can easily be judged by its contribution to that idea!</p>
+<h3>Complex? Or Simple?</h3>
+<p>My stance on this: complex but practical, and optional. That is, features can be numerous and varied, but the core functionality must remain easy to use and be pragmatism-oriented — learn a feature when you want to use it. I don&#39;t want to discard genuinely useful features just to maintain so-called simplicity.</p>
+<h3>Governance and the Future?</h3>
+<p><strong>Community governs community</strong> actually refers to this positive cycle: excellent members -&gt; govern the community -&gt; new members become excellent members -&gt; govern the community -&gt; ... However, once the quality of community members declines, this cycle will quickly become a negative cycle!</p>
+<p>Therefore, <strong>elite governs governance</strong> is introduced to counter the tendency toward a negative cycle, but the proportion of elite needed is estimated to be far smaller than in traditional communities. That said, some issues simply cannot be fully anticipated during the draft stage — we&#39;ll cross those bridges when we come to them.</p>
+<p>Excellent members are those willing to observe communication etiquette — regardless of whether you can offer constructive opinions or come up with brilliant ideas. As long as you&#39;re willing to observe communication etiquette, you&#39;re an excellent member. We must also be vigilant against the community becoming overly homogeneous — for example: constraining forms of address, authoritarianism, excessive exclusivity. These must be firmly resisted, not just in words — the community must be able to accommodate different opinions; what we reject is only low-quality, malicious content.</p>
+<h2>Content Hierarchy System (ITPCS System)</h2>
+<p>Flexible, multi-functional, reusable hierarchy: improve once, benefit everywhere; reference once, connect everywhere.</p>
+<p>All 5 levels listed below can be precisely located via URL.</p>
+<h3>Idea(s)</h3>
+<p>Top-level independent structure with its own page. Used to aggregate, curate topics, and carry ideas.</p>
+<blockquote>
+<p>Additionally, if an idea succeeds in the future, I&#39;d love for the author to include the line &quot;Ideals stem from ideas.&quot; — abbreviated as &quot;ISFI&quot; is also fine. This is just a small, meaningful request of mine; it&#39;s completely fine to leave it out.</p>
+</blockquote>
+<ul>
+<li><p>Status: Open | Pinned | Archived | Closed.</p>
+<blockquote>
+<p>Open: Normal status; viewing, advancing, and sharing are welcome.</p>
+<p>Pinned: Generally used for temporary discussions or discussions that don&#39;t need evolution; <strong>excluded by default</strong> from the public list and the evolution feature is disabled.</p>
+<p>Archived: No longer worth advancing or modifying, but still worth viewing; evolution feature disabled.</p>
+<p>Closed: Not worth viewing or advancing; <strong>excluded by default</strong> from the public list and the evolution feature is disabled.</p>
+</blockquote>
+</li>
+<li><p>Owner: By default, the idea creator automatically becomes its owner. However, ownership may change due to violations, account deletion, voluntary transfer, etc. The system will <strong>not</strong> specifically record the original creator.</p>
+</li>
+<li><p>Affiliates: Anyone can affiliate their own topic to any idea. Once affiliated, the corresponding topic becomes a subordinate of that idea. Idea owners can set reasonable rules (see content below) to restrict affiliation behavior. Owners are responsible for their ideas — reviewing affiliation requests and providing clear responses. If an owner lacks the capacity, they can invite participants; for high-value projects, the editorial board can be called in to assist. If an owner fails to fulfill their operational duties for an extended period, the editorial board will forcibly transfer ownership or close the idea.</p>
+<blockquote>
+<p>According to Article 2 of the 1996 WIPO Copyright Treaty (WCT):</p>
+<p>Copyright protection extends to expressions and not to ideas, procedures, methods of operation or mathematical concepts as such.</p>
+<p>Therefore, others completing or researching an idea without permission <strong>does not infringe copyright</strong>. We protect everyone&#39;s right to freely use ideas and treat it as a fundamental right held by all users. That said, we still reject low-quality, malicious content.</p>
+</blockquote>
+</li>
+</ul>
+<h3>Topic(s)</h3>
+<p>Secondary independent structure with its own page. Used to mount and aggregate posts. The earliest post is automatically treated as the main content of the topic.</p>
+<ul>
+<li>Status: Same as above.</li>
+<li>Owner: Same as above.</li>
+<li>Category: Question, Post, Idea.</li>
+<li>Rigor: Casual, Discussion, Debate.</li>
+<li>Affiliation: Anyone can affiliate their own topic to any idea. Before affiliating, ensure your topic has sufficient relevance to that idea to warrant affiliation, and that it meets any requirements the idea has set for affiliation. If you&#39;re unsure whether you meet the requirements, <strong>contact the owner first</strong> to confirm their agreement. If the owner is slow to express a clear position, contact the editorial board directly for confirmation. Once you receive a clear agreement from either the owner or the editorial board, you will <strong>no longer</strong> bear responsibility for the affiliation.</li>
+</ul>
+<h3>Post(s)</h3>
+<p>The object that carries content and identity; it must be mounted to a topic. It can carry multiple content items; view the version history of content through the Version Machine.</p>
+<ul>
+<li><p>Owner: Same as above.</p>
+</li>
+<li><p>Version Machine: Each time new content is published, the corresponding content is automatically assigned a version number — a positive integer starting from 1 and incrementing sequentially (+1). Version numbers within the same post are never reused. Any version can be marked as deprecated; a warning is displayed when browsing a deprecated version. By default, a post displays the highest-numbered non-deprecated version. If all versions are marked as deprecated, the post is displayed as deprecated.</p>
+</li>
+</ul>
+<h3>Content(s)</h3>
+<p>The object that stores the body and the immutable information bound to the body; it must be mounted to a post.</p>
+<ul>
+<li>Author: When the user pointed to by the author deletes their account, the author attribute must not be traceable. Beyond this, all information in this object is prohibited from being modified.</li>
+<li>Version Number: Assigned by the Version Machine of the parent post; see above.</li>
+</ul>
+<h3>Section(s)</h3>
+<p>Authoritative governance structures created by the platform. Ideas and topics can be associated with multiple sections. Some sections require review for association. Certain special sections may also have special functions at the business level.</p>
+<p>For example: Posts and content under topics associated with the &quot;Important&quot; section cannot be deleted; removal of association or deletion requires joint review by the section editor-in-chief and the editor-in-chief/deputy editor-in-chief.</p>
+<ul>
+<li>Section Editor-in-Chief: Abbreviated as Section Chief. Directly assigned by the editorial board; responsible for managing the entire section. Duties include but are not limited to: reviewing association requests, setting section rules, removing unrelated ideas/topics, inviting collaborators... Each section has at least one Section Editor-in-Chief.</li>
+</ul>
+<h3>Deletion</h3>
+<p>None of the above structures can be self-deleted; deletion must be submitted for review. If the content to be deleted would seriously affect research, freedom of expression, etc., the website will refuse deletion in accordance with GDPR. The website always accepts self-service account deletion; once completed it is irreversible, and this action can anonymize author and owner information.</p>
+<ul>
+<li>Review - Regarding Deletion: When the review process decides to delete content, it will be immediately hidden. The content is then deleted (irreversibly) after the review is confirmed.</li>
+</ul>
+<blockquote>
+<p>According to Article 17(3) of the 2018 General Data Protection Regulation (GDPR):</p>
+<p>Paragraphs 1 and 2 shall not apply to the extent that processing is necessary:</p>
+<p>(a) for exercising the right of freedom of expression and information;</p>
+<p>(b) for compliance with a legal obligation which requires processing by Union or Member State law to which the controller is subject or for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller;</p>
+<p>(c) for reasons of public interest in the area of public health in accordance with points (h) and (i) of Article 9(2) as well as Article 9(3);</p>
+<p>(d) for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes in accordance with Article 89(1) in so far as the right referred to in paragraph 1 is likely to render impossible or seriously impair the achievement of the objectives of that processing; or</p>
+<p>(e) for the establishment, exercise or defence of legal claims.</p>
+<p>This rule is formulated accordingly, ensuring stability and traceability of important site information while safeguarding fundamental rights.</p>
+</blockquote>
+<h2>Toolset</h2>
+<p>Tools that don&#39;t affect core operations, but greatly enhance the user experience.</p>
+<h3>Curation Tool</h3>
+<p>Within a single topic, select posts with specified citation relationships and display them according to filter and sort criteria.</p>
+<h2>Reply System</h2>
+<p>The Reply System handles the case of posts replying to posts. This feature actually expresses a <strong>subordinate relationship</strong> — the post you are replying to is the subject of your reply, not its continuation. For most cases of continuing a discussion, you should consider using paragraph citations/link citations + the Curation Tool.</p>
+<p>Since posts can only be mounted to topics, when replying to a post, if that post has a &quot;reply topic,&quot; the reply will be mounted to that &quot;reply topic&quot;; otherwise one is automatically created and mounted. To mitigate hierarchy overflow, the subordinate &quot;reply posts&quot; of posts within the current topic can be viewed directly via the expand-replies feature, but replies to replies will not be expanded. To view replies to replies, navigate to the independent page of the post&#39;s &quot;reply topic.&quot;</p>
+<p>A &quot;reply topic&quot; is typically created automatically by the system when needed and automatically associated with the original post; each post can have at most one &quot;reply topic.&quot; The owner of a &quot;reply topic&quot; defaults to the owner of the original post at the time of creation; changing the original post&#39;s owner does not change the owner of the subordinate &quot;reply topic.&quot; A &quot;reply topic&quot; defaults to a &quot;tentative&quot; status and is unaffiliated (parentless topic); the owner can modify this as needed. Other than this, functionally at the business level a &quot;reply topic&quot; is not very different from a regular topic — most features available to regular topics are also available to &quot;reply topics.&quot;</p>
+<h2>Reference System</h2>
+<p>Clear citation chains, explicit logical progression, verifiable historical facts: the foundation of structured discussion.</p>
+<p>Note: In the reference system, the citing party is always the content object; what differs is the cited party.</p>
+<h3>Paragraph Citation</h3>
+<p>This citation targets content. When citing, use the ID of the content to be cited and copy the original text of the paragraph to be cited. If the original text does not exist in the cited content, the system should reject the submission and clearly explain the reason.</p>
+<p>When the cited content is deleted, the original text and related information of the cited content become unqueryable, and new citations to that content can no longer be created. However, the copied original text in old citations remains queryable as a snapshot.</p>
+<h3>Link Citation</h3>
+<p>This citation targets all levels of the ITPCS. When citing, use the URL of the object to be cited; the system dynamically renders a thumbnail card at display time. Changes to the original title, associated sections, status, etc., are automatically reflected.</p>
+<p>When the original object is deleted, this citation cannot retain any valuable information.</p>
+<h3>User Citation</h3>
+<p>This citation targets users. Submit with <code>@username</code> format to cite the user; the system internally translates this to the user ID and dynamically resolves it to the username at display time, following username changes.</p>
+<h2>Idea Evolution System</h2>
+<p>When you need help, come here; when you can help, come here for others.</p>
+<h3>Maturity</h3>
+<p>Ideas have three maturity levels: Viewpoint, Concept, and Argument. Lower maturity can be upgraded to higher maturity. When submitting, any maturity level can be selected, as long as the review passes (the actual maturity matches the selected maturity). Upgrade requests can be submitted by anyone, at any time, for any idea (only topics you own can be submitted with the request), as long as the review passes.</p>
+<h3>Heat Value</h3>
+<p>The heat value is based at 0; as time passes, the heat value continuously drops back toward 0. Both ideas and topics have a heat value attribute; an idea&#39;s heat value primarily comes from interactions within its topics, but the two are counted independently.</p>
+<p>Ways to increase heat value: recommendation (primary), views, submissions, etc.</p>
+<p>Ways to decrease heat value: non-recommendation (primary), violation penalties, etc.</p>
+<h3>Ignition</h3>
+<p>An exciting moment! When $Calorific &gt;= Ignition Threshold$, the idea automatically enters the ignition period. The ignition threshold is dynamically adjusted by the editorial board based on site conditions. Upon entering the ignition period, the system awards a large bonus to the heat value and accelerates the rate of natural decline. When $Calorific &lt;= 0$, the idea exits the ignition period and enters a limited cooling period; during the cooling period, the heat value is calculated normally but will not trigger ignition again.</p>
+<p>During the ignition period, editors will summarize the conditions needed for the idea to level up, and organize and call on community members to refine the idea and help it advance.</p>
+<h2>Rights System</h2>
+<p>Rights that act as proxies for community members&#39; rights.</p>
+<h3>Positions</h3>
+<p>Community editors are selected by the Community Council; section editors-in-chief and editors are jointly selected by the Community Council and the administrative team; the editor-in-chief is selected by the administrative team; the Community Council and administrative team govern themselves internally. The site&#39;s theoretical final decision-making authority belongs to the site owner, but the administrative team should minimize interference in site operations, especially in matters under the editorial board&#39;s responsibility. During the early operational period, focus primarily on the following positions: community editor, editor, council member, administrator.</p>
+<p>Editorial Board: Community Editors, Section Editors-in-Chief, Editors, Editor-in-Chief. (Content governance)</p>
+<p>Community Council: Council Members, Senior Council Members, Council Chair. (Community)</p>
+<p>Administrative Team: Administrators, Site Owner. (Elite)</p>
+<h3>Review</h3>
+<p>This is the largest source of authority across the entire site; review grants procedural legitimacy to most operations. Reviews are divided into: Initial Review, Secondary Review, Final Review, and Re-review — corresponding to Community Editors, Editors, the Administrative Team, and the Community, respectively. Levels can be upgraded and levels can be skipped, but they cannot be downgraded.</p>
+<p>After a review is completed, it enters a pending confirmation state. Active confirmation or automatic confirmation upon timeout will cause the system to execute the measures decided in the review. If there is an objection to the review, a protest can be submitted within 72 hours, and the review will be elevated in level and re-reviewed. Reviews marked with the &quot;Closed&quot; tag are automatically confirmed upon completion and cannot be protested.</p>
+<p>If you disagree with a &quot;Closed&quot; review, you may seek the help of the Community Council. If the Community Council finds the review decision to be genuinely improper, it may initiate a re-review process, with the final resolution jointly made by the editorial board and the Community Council.</p>
+<h2>Sustainability</h2>
+<p>I want to put more emotion into this section, because what follows is itself a part of sustainability — by reading this passage, you are already contributing to the platform&#39;s survival. All of the website&#39;s source code is open-sourced under <strong>AGPL-3.0</strong>, and I genuinely don&#39;t want VIP users to rank above others, or pages filled with ads — I understand how unpleasant that is. But it&#39;s also obvious that the hardware costs of the site are not expected to be small. I plan to start by &quot;running on passion,&quot; and for now only accept voluntary donations. In the future, I may consult the community and, with respect for open-source contributors and most users&#39; experience, add some paid features — but if voluntary donations alone can sustain operations, that would be even better. Whether paid features or voluntary donations, I will publish a complete record of income and expenses, and all funds will go entirely to the platform — <strong>not a single cent for personal use</strong>. If someday the site can no longer cover costs, or community governance falls badly, I hope some people will stand up, take the source code, fork a <strong>new IdeaOrbits</strong>, and carry our ideals and ideas forward. — Chacka Lab</p>
+<hr>
+<p>Ideals stem from ideas.</p>
+  </article>
 
-  <script src="https://cdn.staticfile.org/marked/12.0.2/marked.min.js"></script>
   <script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdn.staticfile.org/mermaid/10.9.3/mermaid.min.js"></script>
   <script src="https://cdn.staticfile.org/KaTeX/0.16.9/katex.min.js"></script>
   <script src="https://cdn.staticfile.org/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
   <script>
     (async function () {
-      var raw = `# IdeaOrbits Design Guide
-
-Managing Editor: Yan　Last Updated: 2026-07-21T6:00:00Z
-
----
-
-Let ideas be expressed without frustration.
-
-This document is the design guide for \`IdeaOrbits\`, primarily used to articulate design philosophy and functional design. The beginning of each chapter presents a brief introduction or design philosophy for reference. This guide is currently a draft; the website is not yet live, and writing and implementation are ongoing (Chacka Lab is currently just me). Implementation progress: building the basic user module [In Progress]
-
-Repository: https://github.com/Chacka-Lab/ideaorbits
-
-Collaborators are currently needed to help define website design details and write code (open-source non-profit project, no pay — sorry!).
-
-Or maybe you have some feedback or objections? Absolutely fine — your contributions are very much appreciated!
-
-You can reach me directly; I'd love to chat: yananghelp@outlook.com (Yan)
-
-## Notes
-
-\`ITPCS System\`: Abbreviation for the ITPCS Content Hierarchy System (Idea-Topic-Post-Content-Section System).
-
-## Community Atmosphere and Design Philosophy
-
-This chapter needs no introduction.
-
-### What kind of contribution do you want to make?
-
-Most high-quality communities currently combat [Eternal September](https://en.wikipedia.org/wiki/Eternal_September) by raising the barrier to entry and severely cracking down on low-quality content — but have they gone too far?
-
-Imagine this scenario: someone suddenly has a brilliant idea and shares it in a general community, but nobody responds, so they turn to a high-quality community. One community says: "To join us, you need a GitHub account that's been registered for 3 years." Another says: "You need to find a senior member in a general community to give you an invitation code before you can apply." Yet another says: "You need to explain in detail why you want to join and what value you bring to us (and you'll probably be rejected anyway)." Then a niche community says: "You just need to read enough articles here and interact enough to start posting!" "Perfect — that's where I'll go," he says. He registers, spends hours completing the onboarding tutorial and interaction requirements, successfully posts his idea, and waits for responses. A few hours later, a reply comes in. Just as he's about to respond, the forum triggers a risk-control mechanism, requiring him to wait a full day before posting again... At this point, I imagine the person's spirit has somewhat collapsed. And many people probably give up long before reaching this stage. You might wonder why I describe this so vividly — because I'm the protagonist of this story.
-
-(By the way, when I tried to publish this document on [Hacker News](https://news.ycombinator.com/), I encountered exactly what I described above — yet this document had actually been completed long before that...)
-
-You might think: "Okay, some communities do have high barriers, but surely cracking down on low-quality content is fine?" Literally speaking, that's true — I hate low-quality content too. But what I question is: where exactly is the line for "low-quality content"? Imagine this: someone in a community asks, "Can we give AI genuine free will to make it smarter?" Most people would probably consider this question worthless, unnecessary to discuss, and naive. But what if the question were: "Can we do decentralized accounting?" Is that also naive? Any fully developed idea originally began as a small thought like "Can we do decentralized accounting?" Before deep investigation, we have no right to pass judgment on its value. And why do we require the author to deeply investigate it alone first? A person's energy and experience are ultimately limited — since we already have the internet as a platform, why not let everyone collectively mine and exchange even our tiniest ideas? **Let bad ideas be eliminated faster, let good ideas no longer be buried, let repeated ideas be quickly evaluated!** If IdeaOrbits existed, perhaps this document would only need a single sentence... In summary, I believe many platforms have a misplaced judgment of "low quality." Many platforms excessively chase outcomes, but in today's AI era, the barrier and cost to produce outcomes have dramatically dropped. If platforms still stubbornly pursue outcomes, the losses from ignoring good ideas may far outweigh the benefits.
-
-Of course, you might also think high barriers are necessary to prevent garbage content from entering. First: is your platform really worth the immense effort you're demanding of contributors to prove themselves? This is not an objective question — it's subjective. If a good idea never gets seen because the barrier was too high and the author gave up, that is a loss for the world. Second: can preventing garbage content rely more on content moderation rather than excessively raising barriers? I believe we should shift more focus to the content itself rather than the person behind it. This will significantly increase staffing needs, and my approach is: **community governs community, elite governs governance** (see the \`Governance and the Future?\` section).
-
-You might also challenge: "What makes you think you can escape high barriers?" After observing many communities, I've found that most high-quality communities aim to: create a place for rational discussion -> combat Eternal September -> elite submissions (high barriers), front-end filtering. Our goal is: to promote the birth and evolution of ideas -> we need a place for rational discussion -> combat Eternal September -> mass submissions, evolutionary filtering. Because we have an explicit a priori goal of "promoting the birth and evolution of ideas," we can derive a governance model for "ideas" — and we are capable of implementing evolutionary filtering rather than front-end filtering. General discussion lacks the concept of evolution, so it's difficult to implement the same evolutionary filtering.
-
-### Questions, Posts, and Ideas?
-
-Discussion can be broadly divided into three categories: questions, posts, and ideas. Questions: purely seeking answers. Posts: purely showcasing something. Ideas: content that needs refinement and is constructive. Clearly, ideas occupy a middle ground between questions and posts. And questions and posts can fairly easily become ideas! For example: "How should XXX problem be solved?" is a question, while "Could we use XXX to solve XXX problem?" is an idea. Posts go without saying — all posts start as an idea. Moreover, promoting the birth and evolution of ideas doesn't mean we don't accept questions and posts. For example: "If XXX idea encounters XXX situation, what should be done?" or "XXX idea results published!" — these questions and posts greatly help the birth and evolution of ideas. But content like "I just went through a breakup, what do I do?" or "Here's something fun to look at" contributes almost nothing.
-
-Someone might challenge: if questions and posts are allowed, the evolutionary filtering mentioned above can't work either. Great question! Our solution is to require most topics to be affiliated with a specific idea — this way, governance is confined within the idea, and the value of a topic can easily be judged by its contribution to that idea!
-
-### Complex? Or Simple?
-
-My stance on this: complex but practical, and optional. That is, features can be numerous and varied, but the core functionality must remain easy to use and be pragmatism-oriented — learn a feature when you want to use it. I don't want to discard genuinely useful features just to maintain so-called simplicity.
-
-### Governance and the Future?
-
-**Community governs community** actually refers to this positive cycle: excellent members -> govern the community -> new members become excellent members -> govern the community -> ... However, once the quality of community members declines, this cycle will quickly become a negative cycle!
-
-Therefore, **elite governs governance** is introduced to counter the tendency toward a negative cycle, but the proportion of elite needed is estimated to be far smaller than in traditional communities. That said, some issues simply cannot be fully anticipated during the draft stage — we'll cross those bridges when we come to them.
-
-Excellent members are those willing to observe communication etiquette — regardless of whether you can offer constructive opinions or come up with brilliant ideas. As long as you're willing to observe communication etiquette, you're an excellent member. We must also be vigilant against the community becoming overly homogeneous — for example: constraining forms of address, authoritarianism, excessive exclusivity. These must be firmly resisted, not just in words — the community must be able to accommodate different opinions; what we reject is only low-quality, malicious content.
-
-## Content Hierarchy System (ITPCS System)
-
-Flexible, multi-functional, reusable hierarchy: improve once, benefit everywhere; reference once, connect everywhere.
-
-All 5 levels listed below can be precisely located via URL.
-
-### Idea(s)
-
-Top-level independent structure with its own page. Used to aggregate, curate topics, and carry ideas.
-
-> Additionally, if an idea succeeds in the future, I'd love for the author to include the line "Ideals stem from ideas." — abbreviated as "ISFI" is also fine. This is just a small, meaningful request of mine; it's completely fine to leave it out.
-
-- Status: Open | Pinned | Archived | Closed.
-
-  > Open: Normal status; viewing, advancing, and sharing are welcome.
-  >
-  > Pinned: Generally used for temporary discussions or discussions that don't need evolution; **excluded by default** from the public list and the evolution feature is disabled.
-  >
-  > Archived: No longer worth advancing or modifying, but still worth viewing; evolution feature disabled.
-  >
-  > Closed: Not worth viewing or advancing; **excluded by default** from the public list and the evolution feature is disabled.
-
-- Owner: By default, the idea creator automatically becomes its owner. However, ownership may change due to violations, account deletion, voluntary transfer, etc. The system will **not** specifically record the original creator.
-
-- Affiliates: Anyone can affiliate their own topic to any idea. Once affiliated, the corresponding topic becomes a subordinate of that idea. Idea owners can set reasonable rules (see content below) to restrict affiliation behavior. Owners are responsible for their ideas — reviewing affiliation requests and providing clear responses. If an owner lacks the capacity, they can invite participants; for high-value projects, the editorial board can be called in to assist. If an owner fails to fulfill their operational duties for an extended period, the editorial board will forcibly transfer ownership or close the idea.
-
-  > According to Article 2 of the 1996 WIPO Copyright Treaty (WCT):
-  >
-  > Copyright protection extends to expressions and not to ideas, procedures, methods of operation or mathematical concepts as such.
-  >
-  > Therefore, others completing or researching an idea without permission **does not infringe copyright**. We protect everyone's right to freely use ideas and treat it as a fundamental right held by all users. That said, we still reject low-quality, malicious content.
-
-### Topic(s)
-
-Secondary independent structure with its own page. Used to mount and aggregate posts. The earliest post is automatically treated as the main content of the topic.
-
-- Status: Same as above.
-- Owner: Same as above.
-- Category: Question, Post, Idea.
-- Rigor: Casual, Discussion, Debate.
-- Affiliation: Anyone can affiliate their own topic to any idea. Before affiliating, ensure your topic has sufficient relevance to that idea to warrant affiliation, and that it meets any requirements the idea has set for affiliation. If you're unsure whether you meet the requirements, **contact the owner first** to confirm their agreement. If the owner is slow to express a clear position, contact the editorial board directly for confirmation. Once you receive a clear agreement from either the owner or the editorial board, you will **no longer** bear responsibility for the affiliation.
-
-### Post(s)
-
-The object that carries content and identity; it must be mounted to a topic. It can carry multiple content items; view the version history of content through the Version Machine.
-
-- Owner: Same as above.
-
-- Version Machine: Each time new content is published, the corresponding content is automatically assigned a version number — a positive integer starting from 1 and incrementing sequentially (+1). Version numbers within the same post are never reused. Any version can be marked as deprecated; a warning is displayed when browsing a deprecated version. By default, a post displays the highest-numbered non-deprecated version. If all versions are marked as deprecated, the post is displayed as deprecated.
-
-### Content(s)
-
-The object that stores the body and the immutable information bound to the body; it must be mounted to a post.
-
-- Author: When the user pointed to by the author deletes their account, the author attribute must not be traceable. Beyond this, all information in this object is prohibited from being modified.
-- Version Number: Assigned by the Version Machine of the parent post; see above.
-
-### Section(s)
-
-Authoritative governance structures created by the platform. Ideas and topics can be associated with multiple sections. Some sections require review for association. Certain special sections may also have special functions at the business level.
-
-For example: Posts and content under topics associated with the "Important" section cannot be deleted; removal of association or deletion requires joint review by the section editor-in-chief and the editor-in-chief/deputy editor-in-chief.
-
-- Section Editor-in-Chief: Abbreviated as Section Chief. Directly assigned by the editorial board; responsible for managing the entire section. Duties include but are not limited to: reviewing association requests, setting section rules, removing unrelated ideas/topics, inviting collaborators... Each section has at least one Section Editor-in-Chief.
-
-### Deletion
-
-None of the above structures can be self-deleted; deletion must be submitted for review. If the content to be deleted would seriously affect research, freedom of expression, etc., the website will refuse deletion in accordance with GDPR. The website always accepts self-service account deletion; once completed it is irreversible, and this action can anonymize author and owner information.
-
-- Review - Regarding Deletion: When the review process decides to delete content, it will be immediately hidden. The content is then deleted (irreversibly) after the review is confirmed.
-
-> According to Article 17(3) of the 2018 General Data Protection Regulation (GDPR):
->
-> Paragraphs 1 and 2 shall not apply to the extent that processing is necessary:
->
-> (a) for exercising the right of freedom of expression and information;
->
-> (b) for compliance with a legal obligation which requires processing by Union or Member State law to which the controller is subject or for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller;
->
-> (c) for reasons of public interest in the area of public health in accordance with points (h) and (i) of Article 9(2) as well as Article 9(3);
->
-> (d) for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes in accordance with Article 89(1) in so far as the right referred to in paragraph 1 is likely to render impossible or seriously impair the achievement of the objectives of that processing; or
->
-> (e) for the establishment, exercise or defence of legal claims.
->
-> This rule is formulated accordingly, ensuring stability and traceability of important site information while safeguarding fundamental rights.
-
-## Toolset
-
-Tools that don't affect core operations, but greatly enhance the user experience.
-
-### Curation Tool
-
-Within a single topic, select posts with specified citation relationships and display them according to filter and sort criteria.
-
-## Reply System
-
-The Reply System handles the case of posts replying to posts. This feature actually expresses a **subordinate relationship** — the post you are replying to is the subject of your reply, not its continuation. For most cases of continuing a discussion, you should consider using paragraph citations/link citations + the Curation Tool.
-
-Since posts can only be mounted to topics, when replying to a post, if that post has a "reply topic," the reply will be mounted to that "reply topic"; otherwise one is automatically created and mounted. To mitigate hierarchy overflow, the subordinate "reply posts" of posts within the current topic can be viewed directly via the expand-replies feature, but replies to replies will not be expanded. To view replies to replies, navigate to the independent page of the post's "reply topic."
-
-A "reply topic" is typically created automatically by the system when needed and automatically associated with the original post; each post can have at most one "reply topic." The owner of a "reply topic" defaults to the owner of the original post at the time of creation; changing the original post's owner does not change the owner of the subordinate "reply topic." A "reply topic" defaults to a "tentative" status and is unaffiliated (parentless topic); the owner can modify this as needed. Other than this, functionally at the business level a "reply topic" is not very different from a regular topic — most features available to regular topics are also available to "reply topics."
-
-## Reference System
-
-Clear citation chains, explicit logical progression, verifiable historical facts: the foundation of structured discussion.
-
-Note: In the reference system, the citing party is always the content object; what differs is the cited party.
-
-### Paragraph Citation
-
-This citation targets content. When citing, use the ID of the content to be cited and copy the original text of the paragraph to be cited. If the original text does not exist in the cited content, the system should reject the submission and clearly explain the reason.
-
-When the cited content is deleted, the original text and related information of the cited content become unqueryable, and new citations to that content can no longer be created. However, the copied original text in old citations remains queryable as a snapshot.
-
-### Link Citation
-
-This citation targets all levels of the ITPCS. When citing, use the URL of the object to be cited; the system dynamically renders a thumbnail card at display time. Changes to the original title, associated sections, status, etc., are automatically reflected.
-
-When the original object is deleted, this citation cannot retain any valuable information.
-
-### User Citation
-
-This citation targets users. Submit with \`@username\` format to cite the user; the system internally translates this to the user ID and dynamically resolves it to the username at display time, following username changes.
-
-## Idea Evolution System
-
-When you need help, come here; when you can help, come here for others.
-
-### Maturity
-
-Ideas have three maturity levels: Viewpoint, Concept, and Argument. Lower maturity can be upgraded to higher maturity. When submitting, any maturity level can be selected, as long as the review passes (the actual maturity matches the selected maturity). Upgrade requests can be submitted by anyone, at any time, for any idea (only topics you own can be submitted with the request), as long as the review passes.
-
-### Heat Value
-
-The heat value is based at 0; as time passes, the heat value continuously drops back toward 0. Both ideas and topics have a heat value attribute; an idea's heat value primarily comes from interactions within its topics, but the two are counted independently.
-
-Ways to increase heat value: recommendation (primary), views, submissions, etc.
-
-Ways to decrease heat value: non-recommendation (primary), violation penalties, etc.
-
-### Ignition
-
-An exciting moment! When $Calorific >= Ignition Threshold$, the idea automatically enters the ignition period. The ignition threshold is dynamically adjusted by the editorial board based on site conditions. Upon entering the ignition period, the system awards a large bonus to the heat value and accelerates the rate of natural decline. When $Calorific <= 0$, the idea exits the ignition period and enters a limited cooling period; during the cooling period, the heat value is calculated normally but will not trigger ignition again.
-
-During the ignition period, editors will summarize the conditions needed for the idea to level up, and organize and call on community members to refine the idea and help it advance.
-
-## Rights System
-
-Rights that act as proxies for community members' rights.
-
-### Positions
-
-Community editors are selected by the Community Council; section editors-in-chief and editors are jointly selected by the Community Council and the administrative team; the editor-in-chief is selected by the administrative team; the Community Council and administrative team govern themselves internally. The site's theoretical final decision-making authority belongs to the site owner, but the administrative team should minimize interference in site operations, especially in matters under the editorial board's responsibility. During the early operational period, focus primarily on the following positions: community editor, editor, council member, administrator.
-
-Editorial Board: Community Editors, Section Editors-in-Chief, Editors, Editor-in-Chief. (Content governance)
-
-Community Council: Council Members, Senior Council Members, Council Chair. (Community)
-
-Administrative Team: Administrators, Site Owner. (Elite)
-
-### Review
-
-This is the largest source of authority across the entire site; review grants procedural legitimacy to most operations. Reviews are divided into: Initial Review, Secondary Review, Final Review, and Re-review — corresponding to Community Editors, Editors, the Administrative Team, and the Community, respectively. Levels can be upgraded and levels can be skipped, but they cannot be downgraded.
-
-After a review is completed, it enters a pending confirmation state. Active confirmation or automatic confirmation upon timeout will cause the system to execute the measures decided in the review. If there is an objection to the review, a protest can be submitted within 72 hours, and the review will be elevated in level and re-reviewed. Reviews marked with the "Closed" tag are automatically confirmed upon completion and cannot be protested.
-
-If you disagree with a "Closed" review, you may seek the help of the Community Council. If the Community Council finds the review decision to be genuinely improper, it may initiate a re-review process, with the final resolution jointly made by the editorial board and the Community Council.
-
-## Sustainability
-
-I want to put more emotion into this section, because what follows is itself a part of sustainability — by reading this passage, you are already contributing to the platform's survival. All of the website's source code is open-sourced under **AGPL-3.0**, and I genuinely don't want VIP users to rank above others, or pages filled with ads — I understand how unpleasant that is. But it's also obvious that the hardware costs of the site are not expected to be small. I plan to start by "running on passion," and for now only accept voluntary donations. In the future, I may consult the community and, with respect for open-source contributors and most users' experience, add some paid features — but if voluntary donations alone can sustain operations, that would be even better. Whether paid features or voluntary donations, I will publish a complete record of income and expenses, and all funds will go entirely to the platform — **not a single cent for personal use**. If someday the site can no longer cover costs, or community governance falls badly, I hope some people will stand up, take the source code, fork a **new IdeaOrbits**, and carry our ideals and ideas forward. — Chacka Lab
-
----
-
-Ideals stem from ideas.`;
-
-      // Render markdown to HTML
-      document.getElementById('md-content').innerHTML = marked.parse(raw);
-
       // Render LaTeX (before hljs so math in code blocks stays intact)
       renderMathInElement(document.getElementById('md-content'), {
         delimiters: [
