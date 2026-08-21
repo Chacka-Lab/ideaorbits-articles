@@ -8,6 +8,12 @@ If you also wish to add your own article on top of this, please feel free to sub
 
 如果你也想在此之上加入自己的文章，欢迎提交 PR。
 
+# Sites
+
+Main: https://articles.ideaorbits.org/
+
+Backup: https://chacka-lab.github.io/ideaorbits-articles/
+
 ## License
 
 The source code is released under the MIT license. If there is any additional copyright notice in the article, it shall prevail.
